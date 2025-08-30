@@ -1,5 +1,11 @@
 package io.levysworks.Mavlink;
 
+import com.google.gson.Gson;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+
 public class MissionFile {
     public final String fileType = "Plan";
     public String groundStation;
@@ -9,6 +15,11 @@ public class MissionFile {
     public MissionFile(Mission mission, String groundStation) {
         this.mission = mission;
         this.groundStation = groundStation;
+    }
+
+    public InputStream toStream() {
+        String json = new Gson().toJson(this);
+        return new ByteArrayInputStream(json.getBytes(StandardCharsets.UTF_8));
     }
 
     public static class Mission {
