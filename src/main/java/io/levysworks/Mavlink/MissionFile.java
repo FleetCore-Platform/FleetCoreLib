@@ -8,18 +8,42 @@ import java.nio.charset.StandardCharsets;
 
 public class MissionFile {
     public final String fileType = "Plan";
+    public GeoFence geoFence;
     public String groundStation;
     public Mission mission;
+    public RallyPoints rallyPoints;
     public final int version = 1;
 
-    public MissionFile(Mission mission, String groundStation) {
+    public MissionFile(GeoFence geoFence, Mission mission, String groundStation, RallyPoints rallyPoints) {
+        this.geoFence = geoFence;
         this.mission = mission;
         this.groundStation = groundStation;
+        this.rallyPoints = rallyPoints;
     }
 
     public InputStream toStream() {
         String json = new Gson().toJson(this);
         return new ByteArrayInputStream(json.getBytes(StandardCharsets.UTF_8));
+    }
+
+    public static class RallyPoints {
+        public Object[] points;
+        public final int version = 2;
+
+        public RallyPoints(Object[] points) {
+            this.points = points;
+        }
+    }
+
+    public static class GeoFence {
+        public Object[] circles;
+        public Object[] polygons;
+        public final int version = 2;
+
+        public GeoFence(Object[] circles, Object[] polygons) {
+            this.circles = circles;
+            this.polygons = polygons;
+        }
     }
 
     public static class Mission {
