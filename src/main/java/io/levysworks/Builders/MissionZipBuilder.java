@@ -17,13 +17,14 @@ public class MissionZipBuilder implements Closeable {
         this.zipStream = new ZipOutputStream(new FileOutputStream(archive));
     }
 
-    public MissionZipBuilder mission(String thingName, InputStream missionInputStream) throws IOException {
+    public MissionZipBuilder mission(String thingName, InputStream missionInputStream)
+            throws IOException {
         ZipEntry zipEntry = new ZipEntry(thingName);
         this.zipStream.putNextEntry(zipEntry);
 
         byte[] bytes = new byte[1024];
         int length;
-        while((length = missionInputStream.read(bytes)) >= 0) {
+        while ((length = missionInputStream.read(bytes)) >= 0) {
             this.zipStream.write(bytes, 0, length);
         }
 

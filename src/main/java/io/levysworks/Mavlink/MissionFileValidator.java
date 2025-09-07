@@ -1,4 +1,3 @@
 package io.levysworks.Mavlink;
 
-public class MissionFileValidator {
-}
+public class MissionFileValidator {}

@@ -1,7 +1,6 @@
 package io.levysworks.Mavlink;
 
 import com.google.gson.Gson;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -14,7 +13,8 @@ public class MissionFile {
     public RallyPoints rallyPoints;
     public final int version = 1;
 
-    public MissionFile(GeoFence geoFence, Mission mission, String groundStation, RallyPoints rallyPoints) {
+    public MissionFile(
+            GeoFence geoFence, Mission mission, String groundStation, RallyPoints rallyPoints) {
         this.geoFence = geoFence;
         this.mission = mission;
         this.groundStation = groundStation;
@@ -56,7 +56,8 @@ public class MissionFile {
         public final int vehicleType = 2;
         public final int version = 2;
 
-        public Mission(int cruiseSpeed, int hoverSpeed, Item[] items, double[] plannedHomePosition) {
+        public Mission(
+                int cruiseSpeed, int hoverSpeed, Item[] items, double[] plannedHomePosition) {
             this.cruiseSpeed = cruiseSpeed;
             this.hoverSpeed = hoverSpeed;
             this.items = items;
@@ -75,7 +76,15 @@ public class MissionFile {
         public Double[] params;
         public final String type = "SimpleItem";
 
-        public Item(Double AMSLAltAboveTerrain, int altitude, int altitudeMode, boolean autoContinue, int command, Integer doJumpId, int frame, Double[] params) {
+        public Item(
+                Double AMSLAltAboveTerrain,
+                int altitude,
+                int altitudeMode,
+                boolean autoContinue,
+                int command,
+                Integer doJumpId,
+                int frame,
+                Double[] params) {
             this.AMSLAltAboveTerrain = AMSLAltAboveTerrain;
             this.Altitude = altitude;
             this.AltitudeMode = altitudeMode;

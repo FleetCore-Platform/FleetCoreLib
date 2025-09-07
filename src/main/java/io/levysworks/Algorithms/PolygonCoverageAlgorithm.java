@@ -1,11 +1,9 @@
 package io.levysworks.Algorithms;
 
-import io.levysworks.Mavlink.MissionFile;
-import org.postgis.Geometry;
-
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import org.postgis.Geometry;
 
 public class PolygonCoverageAlgorithm {
     // TODO: Implement algorithm for calculating polygon survey path

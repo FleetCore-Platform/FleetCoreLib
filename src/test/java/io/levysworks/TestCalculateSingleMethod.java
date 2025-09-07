@@ -1,4 +1,3 @@
 package io.levysworks;
 
-public class TestCalculateSingleMethod {
-}
+public class TestCalculateSingleMethod {}
