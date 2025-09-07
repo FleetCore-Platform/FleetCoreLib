@@ -1,9 +1,19 @@
+.PHONY: clean install format lint test
+
 default: install
 
 clean:
-	mvn clean
+	./mvnw clean
 
 install: clean
-	mvn install
+	./mvnw install
 
-.PHONY: clean build install
+format:
+	./mvnw spotless:apply
+
+lint:
+	./mvnw verify
+
+test:
+	./mvnw test
+
