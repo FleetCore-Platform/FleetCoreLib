@@ -9,11 +9,11 @@ public class MissionZipBuilder implements Closeable {
     private final File archive;
 
     public MissionZipBuilder(String missionUUID) throws IOException {
-        String fileName = "mission_" + missionUUID;
-        String suffix = ".bundle.zip";
+        String tmpDir = System.getProperty("java.io.tmpdir");
+        String fileName = "mission_" + missionUUID + ".bundle.zip";
 
-        this.archive = File.createTempFile(fileName, suffix);
-        archive.deleteOnExit();
+        this.archive = new File(tmpDir, fileName);
+
         this.zipStream = new ZipOutputStream(new FileOutputStream(archive));
     }
 
@@ -28,6 +28,8 @@ public class MissionZipBuilder implements Closeable {
             this.zipStream.write(bytes, 0, length);
         }
 
+        this.zipStream.closeEntry();
+
         return this;
     }
 
@@ -37,15 +39,9 @@ public class MissionZipBuilder implements Closeable {
     }
 
     @Override
-    public void close() {
-        try {
-            if (zipStream != null) {
-                zipStream.close();
-            }
-        } catch (IOException ignored) {
-        }
-        if (archive != null && archive.exists()) {
-            archive.delete();
+    public void close() throws IOException {
+        if (zipStream != null) {
+            zipStream.close();
         }
     }
 }
